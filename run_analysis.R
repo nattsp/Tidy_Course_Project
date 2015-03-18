@@ -13,4 +13,7 @@ if (!file.exists(".\\data\\HAR_Dataset.zip")){
     download.file(fileUrl, destfile = ".\\data\\HAR_Dataset.zip")
 }
 
-data <- read.table(unz(temp, "getdata-projectfiles-UCI HAR Dataset.zip"))
+
+data1 <- readLines(unz(".\\data\\HAR_Dataset.zip",
+                       filename="UCI HAR Dataset/activity_labels.txt"
+                       ))
