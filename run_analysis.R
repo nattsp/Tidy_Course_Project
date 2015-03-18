@@ -13,7 +13,30 @@ if (!file.exists(".\\data\\HAR_Dataset.zip")){
     download.file(fileUrl, destfile = ".\\data\\HAR_Dataset.zip")
 }
 
-
+zipFiles <- unzip(
+    zipfile=".\\data\\HAR_Dataset.zip",
+    list=TRUE
+    )
 data1 <- readLines(unz(".\\data\\HAR_Dataset.zip",
                        filename="UCI HAR Dataset/activity_labels.txt"
                        ))
+
+body_acc_x_test <- readLines(
+    unz(".\\data\\HAR_Dataset.zip",
+    filename="UCI HAR Dataset/test/Inertial Signals/body_acc_x_test.txt")
+    )
+
+columnWidths = rep(16, 128)
+
+body_acc_x_test <- read.fwf(
+    unz(
+        ".\\data\\HAR_Dataset.zip",
+        filename="UCI HAR Dataset/test/Inertial Signals/body_acc_x_test.txt"
+        ),
+    widths=columnWidths
+)
+
+head(body_acc_x_test)
+str(body_acc_x_test)
+
+head(body_acc_x_test[c(1, 2, 3)], 3L)
