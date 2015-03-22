@@ -8,11 +8,14 @@ In the file run_analysis.R you will see
 * files being extracted from zip file
 * 6 files being combined (3 test and 3 train) to make our data set
 * column names being applied
-* activity names being applied
+* descriptive activity names column added
 
 A tidy data set is then produced
-* One row for each subject (person) activity pair
-* Each column being a variable (average of all values for that subject activity)
+* One row for each subject (person) / activity pair
+* Each column being a variable (average of all values for that subject / activity)
 
+### Loading in the tidy data
 In order to test the tidy data set please read it in using the following command in R
+```{r}
 tidy <- read.table("TidyData.txt", header=TRUE)
+```
