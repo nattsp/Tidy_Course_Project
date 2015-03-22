@@ -10,6 +10,8 @@ In the file run_analysis.R you will see
 * column names being applied
 * descriptive activity names column added
 
+In CodeBook.md you will find a description of the data collected and 
+
 A tidy data set is then produced
 * One row for each subject (person) / activity pair
 * Each column being a variable (average of all values for that subject / activity)

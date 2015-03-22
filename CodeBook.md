@@ -1,7 +1,7 @@
 Feature Selection 
 =================
 
-(Please note this CodeBook has been largly copied from a file called features_info.txt that comes with the samsung data for this project. There has been a small amount of change due to use using less data for our set.)
+(Please note this CodeBook has been largly copied from a file called features_info.txt that comes with the samsung data for this project. Some updates have been made to reflect our tidy data set.)
 
 The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. These time domain signals (prefix 't' to denote time) were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. Similarly, the acceleration signal was then separated into body and gravity acceleration signals (tBodyAcc-XYZ and tGravityAcc-XYZ) using another low pass Butterworth filter with a corner frequency of 0.3 Hz. 
 
@@ -36,7 +36,10 @@ mean(): Mean value
 
 std(): Standard deviation
 
-##The complete list of variables
+## Tidy Data Set Variables
+In our tidy data set we took the supplied variables and produced a tidy summary which shows the average value for each of the variables for each Subject \ Activity pair
+
+###The complete list of variables
 * "Subject"
 * "Activity"
 * "tBodyAcc-mean()-X"
