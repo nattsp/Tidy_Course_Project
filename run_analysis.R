@@ -92,13 +92,16 @@ XSub$Activity <- ActivityName$Activity
 
 ## Step 5
 
+# Create a data frame table as they are good to make summaries from
 DataTbl <- tbl_df(XSub)
-DataGroup <- group_by(DataTbl, Subject, Activity)
 
+# Group the data by Subject and Activity so we can see how each subject performs
+# for each activity. In this case we want to see the average value of all our
+# variables in XSub
 TidyMean <- DataTbl %>%
     group_by(Subject, Activity) %>%
     summarise_each(funs(mean))
 
+# Copy out our tidy data to a file for submission.
 write.table(TidyMean, file = "TidyData.txt", row.name=FALSE)
 
-tidy <- read.table("TidyData.txt", header=TRUE)
