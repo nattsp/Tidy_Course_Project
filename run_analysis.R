@@ -69,7 +69,7 @@ XSub$Subject <- subject$Subject
 table(XSub$Subject)
 
 
-## Step 4
+## Step 3
 
 # Load the list of activities for both the training set and test set data
 con <- unz(".\\data\\HAR_Dataset.zip", filename="UCI HAR Dataset/train/y_train.txt")
@@ -83,7 +83,8 @@ activity_labels <- read.table(con, col.names=c("Activity_code", "Activity"), str
 Activity <- rbind(Activity_test, Activity_train)
 # Add the descriptive name of the activity
 ActivityName <- inner_join(Activity, activity_labels)
-# Combine the descriptive name of the actvity to the data
+
+# Combine the descriptive name of the actvity to our data
 XSub$Activity <- ActivityName$Activity
 
 ## Step 4
