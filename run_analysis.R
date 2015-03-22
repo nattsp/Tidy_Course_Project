@@ -2,6 +2,9 @@
 ## Creating a tidy data set
 
 library(dplyr)
+library(LaF)
+library(ffbase)
+
 
 # Create a data directory if one doesn't already exist.
 if (!file.exists("data")){    
@@ -24,15 +27,16 @@ zipFiles <- unzip(
     )
 print("The files in the Har_Dataset.Zip are:")
 print(zipFiles)
-print("")
 
-# This function will extract the files from a compressed file
+# This function will extract the files from a compressed zip file
 getCompressed <- function(zipfilepath, extract) {
         con <- unz(zipfilepath, filename=extract)
         on.exit(close(con))
         unziped <-readLines(con)
         unziped
 }
+
+# This function extracts fix width files from a compressed zip file
 getCompressedfwf <- function(zipfilepath, extract, columnWidths) {
         con <- unz(zipfilepath, filename=extract)
         unziped <- read.fwf(con, widths=columnWidths)
@@ -43,16 +47,29 @@ activities <- getCompressed(".\\data\\HAR_Dataset.zip",
                                 "UCI HAR Dataset/activity_labels.txt")
 subject_Test <- getCompressed(".\\data\\HAR_Dataset.zip",
                             "UCI HAR Dataset/test/subject_test.txt")
-print(subject_Test)
+print(activities)
+str(subject_Test)
+table(subject_Test)
 length(subject_Test)
-body_acc_x_test <- getCompressed(".\\data\\HAR_Dataset.zip",
-                                 "UCI HAR Dataset/test/Inertial Signals/body_acc_x_test.txt")
-columnWidths = rep(16, 128)
-body_acc_x_test <- getCompressedfwf(".\\data\\HAR_Dataset.zip",
-                                 "UCI HAR Dataset/test/Inertial Signals/body_acc_x_test.txt",
-                                 columnWidths)
+#body_acc_x_test <- getCompressed(".\\data\\HAR_Dataset.zip",
+#                                 "UCI HAR Dataset/test/Inertial Signals/body_acc_x_test.txt")
+#columnWidths = rep(16, 128)
+#body_acc_x_test <- getCompressedfwf(".\\data\\HAR_Dataset.zip",
+#                                 "UCI HAR Dataset/test/Inertial Signals/body_acc_x_test.txt",
+#                                 columnWidths)
+#head(body_acc_x_test)
+#str(body_acc_x_test)
+#head(body_acc_x_test[c(1, 2, 3)], 3L)
 
-head(body_acc_x_test)
-str(body_acc_x_test)
+columnWidths = rep(16, 561)
+X_Data <- getCompressedfwf(".\\data\\HAR_Dataset.zip",
+                                    "UCI HAR Dataset/train/X_train.txt",
+                                    columnWidths)
 
-head(body_acc_x_test[c(1, 2, 3)], 3L)
+columntypes <- rep('numeric', 561)
+
+
+con <- unz(".\\data\\HAR_Dataset.zip", filename="UCI HAR Dataset/train/X_train.txt")
+X_train <- read.table(con)
+con <- unz(".\\data\\HAR_Dataset.zip", filename="UCI HAR Dataset/test/X_test.txt")
+X_test <- read.table(con)
