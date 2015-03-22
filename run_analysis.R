@@ -135,3 +135,9 @@ XSub$Activity <- ActivityName$Activity
 
 DataTbl <- tbl_df(XSub)
 DataGroup <- group_by(DataTbl, Subject, Activity)
+
+TidyMean <- DataTbl %>%
+    group_by(Subject, Activity) %>%
+    summarise_each(funs(mean))
+
+write.table(TidyMean, file = "TidyData.txt", row.name=FALSE)
